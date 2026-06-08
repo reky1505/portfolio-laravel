@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Reky Saputra | Portfolio Futuristik</title>
+    <!-- Favicon (Ikon di Tab Browser) -->
+    <link rel="icon" type="image/png" href="{{ asset('images/logo-r.png') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;800&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -248,9 +250,14 @@
     <canvas id="particleCanvas"></canvas>
     <div id="liquidGlow"></div>
 
+<!-- Navbar Menu -->
     <nav class="navbar fixed top-0 w-full z-50 py-4 px-6 md:px-12 transition-all" id="navbar">
         <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center">
-            <a href="#" class="text-2xl font-bold tracking-wider brand-font bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">REKY</a>
+            <!-- LOGO GAMBAR BARU -->
+            <a href="#" class="flex items-center">
+                <img src="{{ asset('images/logo2.png') }}" alt="Logo Reky" class="h-16 w-auto hover:opacity-80 transition-opacity">
+            </a>
+            
             <div class="flex gap-5 text-sm md:text-base font-medium">
                 <a href="#home" class="nav-link text-gray-300 hover:text-white">Home</a>
                 <a href="#about" class="nav-link text-gray-300 hover:text-white">About</a>
@@ -398,7 +405,7 @@
             </section>
             
             <section id="skills" class="mt-24 reveal">
-                <h2 class="text-4xl md:text-5xl font-bold mb-10 text-center brand-font bg-gradient-to-r from-emerald-400 to-sky-400 bg-clip-text text-transparent">Skills & Tools</h2>
+                <h2 class="text-4xl md:text-5xl font-bold mb-10 text-center brand-font bg-gradient-to-r from-emerald-400 to-sky-400 bg-clip-text text-transparent">Skills</h2>
                 <div class="glass-panel p-8 md:p-10">
                     <div class="flex flex-wrap justify-center gap-4" id="magneticContainer">
                         <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium backdrop-blur-sm">Editing</span>
