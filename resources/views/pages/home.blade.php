@@ -652,7 +652,7 @@
             reveal();
 
             // ======================== 6. TYPEWRITER EFFECT ========================
-            const words = ["Multimedia Broadcasting Student", "Creative Content Creator", "Graphic Design."];
+            const words = ["Multimedia Broadcasting Student", "Creative Content Creator", "Graphic Design"];
             let i = 0, timer;
 
             function typingEffect() {
