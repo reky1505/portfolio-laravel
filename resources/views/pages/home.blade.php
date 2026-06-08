@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Reky Saputra | Portfolio Futuristik</title>
-    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;800&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     
     <style>
-        /* ========== CSS FULL ========== */
         * {
             margin: 0;
             padding: 0;
@@ -42,7 +40,7 @@
             display: block;
         }
         
-        /* Magnetic Liquid Glow (cairan warna-warni mengikuti mouse) */
+        /* Magnetic Liquid Glow */
         #liquidGlow {
             position: fixed;
             top: 0;
@@ -75,7 +73,7 @@
             --mouse-y: 50%;
         }
         
-        /* Efek 3D Tilt (diterapkan via JS) */
+        /* Efek 3D Tilt */
         .tilt-effect {
             transition: transform 0.1s ease-out;
             will-change: transform;
@@ -105,7 +103,7 @@
             opacity: 1;
         }
         
-        /* 2. Cyberpunk Glitch (teks bergetar) */
+        /* 2. Cyberpunk Glitch */
         .glitch-text {
             transition: all 0.2s;
         }
@@ -123,7 +121,7 @@
             100% { transform: skew(0deg); }
         }
         
-        /* 3. Dynamic Expand (muncul teks tersembunyi) */
+        /* 3. Dynamic Expand */
         .expand-card {
             transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
@@ -138,7 +136,7 @@
             opacity: 1;
         }
         
-        /* 4. Magnetic Pull (efek tarik ke kursor) */
+        /* 4. Magnetic Pull */
         .magnetic-item {
             transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.6, 1.1);
             will-change: transform;
@@ -235,7 +233,6 @@
             color: #fff;
         }
         
-        /* Responsive adjustments */
         @media (max-width: 768px) {
             .glass-panel {
                 border-radius: 1.5rem;
@@ -251,7 +248,6 @@
     <canvas id="particleCanvas"></canvas>
     <div id="liquidGlow"></div>
 
-    <!-- Navbar Menu -->
     <nav class="navbar fixed top-0 w-full z-50 py-4 px-6 md:px-12 transition-all" id="navbar">
         <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center">
             <a href="#" class="text-2xl font-bold tracking-wider brand-font bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">REKY</a>
@@ -266,189 +262,203 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+<!-- Hero Section -->
     <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-28 pb-20 relative">
         <h1 class="text-6xl md:text-8xl font-bold tracking-widest mb-5 reveal brand-font bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">REKY SAPUTRA</h1>
         <div class="text-xl text-gray-300 reveal"><span id="typewriter" class="text-white text-2xl md:text-3xl cursor"></span></div>
         <p class="mt-6 text-gray-400 max-w-xl reveal">#Creative | #Design | #Visionary</p>
-        <div class="mt-10 flex gap-4 reveal">
+        
+        <div class="mt-10 flex flex-wrap justify-center gap-4 reveal">
             <a href="#projects" class="px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 transition shadow-lg">Explore Work</a>
-            <a href="#contact" class="px-6 py-3 rounded-full border border-white/30 hover:bg-white/10 transition">Contact Me</a>
+            
+            <!-- TOMBOL DOWNLOAD PDF STATIS TERHUBUNG KE FILE YANG KAMU UPLOAD -->
+            <a href="{{ asset('docs/portfolio_reky_saputra.pdf') }}" download="portfolio_reky_saputra.pdf" target="_blank" class="px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 transition shadow-lg text-white font-medium flex items-center gap-2">
+                📥 Download PDF
+            </a>
+            
+            <a href="#contact" class="px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 transition shadow-lg">Contact Me</a>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 md:px-6 pb-24 relative z-10">
-        
-        <!-- About Section dengan Foto Profil -->
-        <section id="about" class="mb-24 reveal">
-            <div class="glass-panel border-spotlight p-8 md:p-10 tilt-effect" id="aboutCard">
-                <div class="flex flex-col md:flex-row gap-8 items-center">
-                    <div class="flex-1">
-                        <h3 class="text-3xl font-bold text-blue-300 brand-font">Tentang Saya</h3>
-                        <p class="text-gray-300 mt-4 leading-relaxed">Halo! Saya <span class="text-white font-semibold">Reky Dwi Saputra</span>, seorang mahasiswa aktif Politeknik Elektronika Negeri Surabaya jurusan Multimedia Broadcasting yang memiliki minat dan kemampuan di bidang produksi konten, editing video, serta pengelolaan media digital. Terbiasa bekerja secara individu maupun tim, serta siap mengembangkan diri dan berkontribusi di industri kreatif.</p>
-                        <p class="text-gray-400 mt-3">🎓 Politeknik Elektronika Negeri Surabaya | 🚀 Jurusan Multimedia Broadcasting</p>
-                    </div>
-                    <div class="flex-shrink-0">
-                        <div class="relative">
-                            <!-- Efek glow di belakang -->
-                            <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur-xl opacity-60"></div>
-                            <!-- Foto profil dengan border bulat -->
-                            <div class="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-white/30 shadow-xl">
-                                <!-- DI SINI LOKASI KODE FOTO KAMU DIPERBARUI -->
-                                <img 
-                                    src="{{ asset('images/foto-reky.jpg') }}" 
-                                    alt="Reky Saputra"
-                                    class="w-full h-full object-cover"
-                                >
+        <main class="max-w-7xl mx-auto px-4 md:px-6 pb-24 relative z-10">
+            
+            <section id="about" class="reveal">
+                <div class="glass-panel border-spotlight p-8 md:p-10 tilt-effect" id="aboutCard">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="flex-1">
+                            <h3 class="text-3xl font-bold text-blue-300 brand-font">Tentang Saya</h3>
+                            <p class="text-gray-300 mt-4 leading-relaxed">Halo! Saya <span class="text-white font-semibold">Reky Dwi Saputra</span>, seorang mahasiswa aktif Politeknik Elektronika Negeri Surabaya jurusan Multimedia Broadcasting yang memiliki minat dan kemampuan di bidang produksi konten, editing video, serta pengelolaan media digital. Terbiasa bekerja secara individu maupun tim, serta siap mengembangkan diri dan berkontribusi di industri kreatif.</p>
+                            <p class="text-gray-400 mt-3">🎓 Politeknik Elektronika Negeri Surabaya | 🚀 Jurusan Multimedia Broadcasting (D3)</p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <div class="relative">
+                                <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur-xl opacity-60"></div>
+                                <div class="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-white/30 shadow-xl">
+                                    <img 
+                                        src="{{ asset('images/foto-reky.jpg') }}" 
+                                        alt="Reky Saputra"
+                                        class="w-full h-full object-cover"
+                                    >
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        
-        <!-- Experience Section -->
-        <section id="experience" class="mb-24 reveal">
-            <h2 class="text-4xl md:text-5xl font-bold mb-10 text-center brand-font bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Work Experience</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-7">
-                <div class="glass-panel p-7 glitch-text transition-all duration-300">
-                    <div class="flex items-center gap-3 mb-3">
-                        <span class="text-3xl">💼</span>
-                        <h3 class="text-2xl font-bold">WORKSHOP NEXTGEN CREATORS | 2024</h3>
-                    </div>
-                    <p class="text-cyan-300 text-sm">Divisi Perlengkapan</p>
-                    <p class="text-gray-300 mt-2">Mengelola dan mendistribusikan kebutuhan perlengkapan teknis maupun non-teknis guna memastikan seluruh rangkaian workshop berjalan lancar dan terorganisir.</p>
-                </div>
-                <div class="glass-panel p-7 glitch-text transition-all duration-300">
-                    <div class="flex items-center gap-3 mb-3">
-                        <span class="text-3xl">⚙️</span>
-                        <h3 class="text-2xl font-bold">MMB FEST | 2025</h3>
-                    </div>
-                    <p class="text-cyan-300 text-sm">Sie Perlengkapan</p>
-                    <p class="text-gray-300 mt-2">Berkoordinasi antar tim untuk menyiapkan, mengelola, dan memastikan ketersediaan seluruh perlengkapan serta kebutuhan operasional selama festival berlangsung.</p>
-                </div>
-                <div class="glass-panel p-7 glitch-text transition-all duration-300">
-                    <div class="flex items-center gap-3 mb-3">
-                        <span class="text-3xl">🎨</span>
-                        <h3 class="text-2xl font-bold">PROJECT FILM PAMBALI | 2025</h3>
-                    </div>
-                    <p class="text-cyan-300 text-sm">Lightman</p>
-                    <p class="text-gray-300 mt-2">Merancang dan mengeksekusi tata cahaya selama masa produksi untuk membangun suasana adegan, mendukung kualitas visual, dan memperkuat elemen sinematografi film.</p>
-                </div>
-                <div class="glass-panel p-7 glitch-text transition-all duration-300">
-                    <div class="flex items-center gap-3 mb-3">
-                        <span class="text-3xl">🏆</span>
-                        <h3 class="text-2xl font-bold">HIMA MMB | 2025 - 2026</h3>
-                    </div>
-                    <p class="text-cyan-300 text-sm">Penanggung Jawab</p>
-                    <p class="text-gray-300 mt-2">Memimpin perencanaan hingga eksekusi program sosial "HIMA MMB Berbagi 2026". Mengoordinasikan tim pelaksana untuk kegiatan donasi dan buka bersama guna memberikan dampak positif bagi masyarakat.</p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Projects Section -->
-        <section id="projects" class="mb-24 reveal">
-            <h2 class="text-4xl md:text-5xl font-bold mb-10 text-center brand-font bg-gradient-to-r from-blue-400 to-pink-500 bg-clip-text text-transparent">Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Dynamic Expand Card -->
-                <div class="glass-panel expand-card p-6 transition-all hover:border-blue-400/50">
-                    <div class="flex justify-between items-start">
-                        <h3 class="text-2xl font-bold text-blue-300">Fotografi</h3>
-                        <span class="text-xs bg-blue-500/30 px-3 py-1 rounded-full">Photography</span>
-                    </div>
-                    <p class="text-gray-400 mt-2">Eksplorasi visual fotografi yang menonjolkan estetika cahaya, keseimbangan komposisi, dan penyampaian emosi.</p>
-                    <div class="expand-hidden mt-4">
-                        <p class="text-gray-300 text-sm border-t border-white/10 pt-3">✨ Gaya: Dramatic Backlight, Simetri Refleksi, Negative Space. Menciptakan karya visual yang bersih, estetik, dan berkarakter unik.</p>
-                    </div>
-                </div>
-                <!-- 3D Flip Card -->
-                <div class="flip-card h-64 md:h-72">
-                    <div class="flip-inner">
-                        <div class="flip-front flex flex-col justify-center items-center text-center">
-                            <span class="text-5xl mb-3">🔄</span>
-                            <h3 class="text-2xl font-bold">AR ParentEase</h3>
-                            <p class="text-gray-300 text-sm px-2 mt-2">Detail</p>
+            </section>
+            
+            <section id="experience" class="mt-24 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-10 text-center brand-font bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Work Experience</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-7">
+                    <div class="glass-panel p-7 glitch-text transition-all duration-300">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-3xl">💼</span>
+                            <h3 class="text-2xl font-bold">WORKSHOP NEXTGEN CREATORS | 2024</h3>
                         </div>
-                        <div class="flip-back flex flex-col justify-center items-center text-center">
-                            <h3 class="text-xl font-bold text-white">Unity AR</h3>
-                            <p class="text-gray-200 text-sm mt-2">Prototipe aplikasi edukasi interaktif untuk mengenalkan berbagai jenis hewan kepada anak melalui metode bermain sambil belajar.</p>
-                            <span class="text-xs bg-purple-500/40 mt-3 px-3 py-1 rounded-full">AR</span>
+                        <p class="text-cyan-300 text-sm">Divisi Perlengkapan</p>
+                        <p class="text-gray-300 mt-2">Mengelola dan mendistribusikan kebutuhan perlengkapan teknis maupun non-teknis guna memastikan seluruh rangkaian workshop berjalan lancar dan terorganisir.</p>
+                    </div>
+                    <div class="glass-panel p-7 glitch-text transition-all duration-300">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-3xl">⚙️</span>
+                            <h3 class="text-2xl font-bold">MMB FEST | 2025</h3>
+                        </div>
+                        <p class="text-cyan-300 text-sm">Sie Perlengkapan</p>
+                        <p class="text-gray-300 mt-2">Berkoordinasi antar tim untuk menyiapkan, mengelola, dan memastikan ketersediaan seluruh perlengkapan serta kebutuhan operasional selama festival berlangsung.</p>
+                    </div>
+                    <div class="glass-panel p-7 glitch-text transition-all duration-300">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-3xl">🎨</span>
+                            <h3 class="text-2xl font-bold">PROJECT FILM PAMBALI | 2025</h3>
+                        </div>
+                        <p class="text-cyan-300 text-sm">Lightman</p>
+                        <p class="text-gray-300 mt-2">Merancang dan mengeksekusi tata cahaya selama masa produksi untuk membangun suasana adegan, mendukung kualitas visual, dan memperkuat elemen sinematografi film.</p>
+                    </div>
+                    <div class="glass-panel p-7 glitch-text transition-all duration-300">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-3xl">🏆</span>
+                            <h3 class="text-2xl font-bold">HIMA MMB | 2025 - 2026</h3>
+                        </div>
+                        <p class="text-cyan-300 text-sm">Penanggung Jawab</p>
+                        <p class="text-gray-300 mt-2">Memimpin perencanaan hingga eksekusi program sosial "HIMA MMB Berbagi 2026". Mengoordinasikan tim pelaksana untuk kegiatan donasi dan buka bersama guna memberikan dampak positif bagi masyarakat.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="projects" class="mt-24 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-10 text-center brand-font bg-gradient-to-r from-blue-400 to-pink-500 bg-clip-text text-transparent">Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="glass-panel expand-card p-6 transition-all hover:border-blue-400/50">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-2xl font-bold text-blue-300">Fotografi</h3>
+                            <span class="text-xs bg-blue-500/30 px-3 py-1 rounded-full">Photography</span>
+                        </div>
+                        <p class="text-gray-400 mt-2">Eksplorasi visual fotografi yang menonjolkan estetika cahaya, keseimbangan komposisi, dan penyampaian emosi.</p>
+                        <div class="expand-hidden mt-4">
+                            <p class="text-gray-300 text-sm border-t border-white/10 pt-3">✨ Gaya: Dramatic Backlight, Simetri Refleksi, Negative Space. Menciptakan karya visual yang bersih, estetik, dan berkarakter unik.</p>
                         </div>
                     </div>
-                </div>
-                <!-- Dynamic Expand Card 2 -->
-                <div class="glass-panel expand-card p-6 transition-all hover:border-green-400/50">
-                    <div class="flex justify-between items-start">
-                        <h3 class="text-2xl font-bold text-green-300">Graphic Design</h3>
-                        <span class="text-xs bg-green-500/30 px-3 py-1 rounded-full">Design</span>
-                    </div>
-                    <p class="text-gray-400 mt-2">Pengembangan visual komprehensif yang mencakup pengeditan foto, video, dan desain logo yang menarik serta komunikatif.</p>
-                    <div class="expand-hidden mt-4">
-                        <p class="text-gray-300 text-sm border-t border-white/10 pt-3">✨ Keahlian: Retouching & Komposisi Foto, Penyusunan Footage & Color Grading Video, Desain Logo Minimalis untuk identitas brand yang kuat.</p>
-                    </div>
-                </div>
-                <!-- Dynamic Expand Card 3 -->
-                <div class="glass-panel expand-card p-6 transition-all hover:border-yellow-400/50">
-                    <div class="flex justify-between items-start">
-                        <h3 class="text-2xl font-bold text-yellow-300">Script Writer</h3>
-                        <span class="text-xs bg-yellow-500/30 px-3 py-1 rounded-full">Action</span>
-                    </div>
-                    <p class="text-gray-400 mt-2">Naskah film pendek bergenre aksi yang mengisahkan perjuangan bertahan hidup dari ancaman sindikat judi online.</p>
-                    <div class="expand-hidden mt-4">
-                        <p class="text-gray-300 text-sm border-t border-white/10 pt-3">✨ Fokus: Pengembangan Konsep, Alur Cerita, Penokohan. Menghadirkan intrik ketegangan seputar perebutan file rahasia bernilai tinggi.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Skills Section -->
-        <section id="skills" class="mb-24 reveal">
-            <h2 class="text-4xl md:text-5xl font-bold mb-10 text-center brand-font bg-gradient-to-r from-emerald-400 to-sky-400 bg-clip-text text-transparent">Skills & Tools</h2>
-            <div class="glass-panel p-8 md:p-10">
-                <div class="flex flex-wrap justify-center gap-4" id="magneticContainer">
-                    <!-- Soft & Technical Skills -->
-                    <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium backdrop-blur-sm">Editing</span>
-                    <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Graphic Design</span>
-                    <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Photography</span>
-                    <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Videography</span>
-                    <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Video Editing</span>
-                    <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Multimedia Production</span>
                     
-                    <!-- Soft Skills -->
-                    <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Situation Awareness</span>
-                    <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Attention to Detail</span>
-                    <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Discipline & Responsibility</span>
-                    <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Teamwork</span>
-                    <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Time Management</span>
-                    <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Problem Solving</span>
+                    <div class="flip-card h-64 md:h-72">
+                        <div class="flip-inner">
+                            <div class="flip-front flex flex-col justify-center items-center text-center">
+                                <span class="text-5xl mb-3">🔄</span>
+                                <h3 class="text-2xl font-bold">AR ParentEase</h3>
+                                <p class="text-gray-300 text-sm px-2 mt-2">Detail</p>
+                            </div>
+                            <div class="flip-back flex flex-col justify-center items-center text-center">
+                                <h3 class="text-xl font-bold text-white">Unity AR</h3>
+                                <p class="text-gray-200 text-sm mt-2">Prototipe aplikasi edukasi interaktif untuk mengenalkan berbagai jenis hewan kepada anak melalui metode bermain sambil belajar.</p>
+                                <span class="text-xs bg-purple-500/40 mt-3 px-3 py-1 rounded-full">AR</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-panel expand-card p-6 transition-all hover:border-green-400/50">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-2xl font-bold text-green-300">Graphic Design</h3>
+                            <span class="text-xs bg-green-500/30 px-3 py-1 rounded-full">Design</span>
+                        </div>
+                        <p class="text-gray-400 mt-2">Pengembangan visual komprehensif yang mencakup pengeditan foto, video, dan desain logo yang menarik serta komunikatif.</p>
+                        <div class="expand-hidden mt-4">
+                            <p class="text-gray-300 text-sm border-t border-white/10 pt-3">✨ Keahlian: Retouching & Komposisi Foto, Penyusunan Footage & Color Grading Video, Desain Logo Minimalis untuk identitas brand yang kuat.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-panel expand-card p-6 transition-all hover:border-yellow-400/50">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-2xl font-bold text-yellow-300">Script Writer</h3>
+                            <span class="text-xs bg-yellow-500/30 px-3 py-1 rounded-full">Action</span>
+                        </div>
+                        <p class="text-gray-400 mt-2">Naskah film pendek bergenre aksi yang mengisahkan perjuangan bertahan hidup dari ancaman sindikat judi online.</p>
+                        <div class="expand-hidden mt-4">
+                            <p class="text-gray-300 text-sm border-t border-white/10 pt-3">✨ Fokus: Pengembangan Konsep, Alur Cerita, Penokohan. Menghadirkan intrik ketegangan seputar perebutan file rahasia bernilai tinggi.</p>
+                        </div>
+                    </div>
                 </div>
-                <p class="text-center text-gray-400 mt-8 text-sm">✨ Technical Skills & Soft Skills</p>
-            </div>
-        </section>
-        
-        <!-- Contact Section -->
-        <section id="contact" class="reveal">
-            <div class="glass-panel p-8 md:p-12 text-center">
-                <h2 class="text-4xl font-bold brand-font mb-4">Mari Kolaborasi</h2>
-                <p class="text-gray-300 max-w-lg mx-auto">Siap membantu mewujudkan ide digital Anda. Tersedia untuk project freelance & konsultasi.</p>
-                <div class="flex flex-wrap justify-center gap-5 mt-8">
-                    <a href="mailto:reky.saputra262@gmail.com" class="px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-xl transition">Email Me</a>
-                    <a href="https://github.com/rekysaputra" target="_blank" class="px-6 py-3 rounded-full border border-white/30 hover:bg-white/10 transition">GitHub</a>
-                    <a href="https://www.instagram.com/rekydsaputra?igsh=MWIzdW5xeGM2Y3B0ag%3D%3D&utm_source=qr" class="px-6 py-3 rounded-full border border-white/30 hover:bg-white/10 transition">Instagram</a>
+            </section>
+            
+            <section id="skills" class="mt-24 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-10 text-center brand-font bg-gradient-to-r from-emerald-400 to-sky-400 bg-clip-text text-transparent">Skills & Tools</h2>
+                <div class="glass-panel p-8 md:p-10">
+                    <div class="flex flex-wrap justify-center gap-4" id="magneticContainer">
+                        <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium backdrop-blur-sm">Editing</span>
+                        <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Graphic Design</span>
+                        <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Photography</span>
+                        <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Videography</span>
+                        <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Video Editing</span>
+                        <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Multimedia Production</span>
+                        <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Situation Awareness</span>
+                        <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Attention to Detail</span>
+                        <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Discipline & Responsibility</span>
+                        <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Teamwork</span>
+                        <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Time Management</span>
+                        <span data-magnetic class="magnetic-item px-6 py-3 bg-white/5 rounded-full border border-white/20 text-lg font-medium">Problem Solving</span>
+                    </div>
+                    <p class="text-center text-gray-400 mt-8 text-sm">✨ Technical Skills & Soft Skills</p>
                 </div>
-                <p class="text-gray-500 text-sm mt-8">📍 Surabaya, Indonesia</p>
-            </div>
-        </section>
-    </main>
+            </section>
+            
+            <section id="contact" class="mt-24 reveal">
+                <div class="glass-panel p-8 md:p-12 text-center">
+                    <h2 class="text-4xl font-bold brand-font mb-4">Mari Kolaborasi</h2>
+                    <p class="text-gray-300 max-w-lg mx-auto">Siap membantu mewujudkan id digital Anda. Tersedia untuk project freelance & konsultasi.</p>
+                    <div class="flex flex-wrap justify-center gap-5 mt-8">
+                        <a href="mailto:reky.saputra262@gmail.com" class="px-6 py-3 rounded-full border border-white/30 hover:bg-white/10 transition">Email</a>
+                        <a href="https://github.com/rekysaputra" target="_blank" class="px-6 py-3 rounded-full border border-white/30 hover:bg-white/10 transition">GitHub</a>
+                        <a href="https://www.instagram.com/rekydsaputra?igsh=MWIzdW5xeGM2Y3B0ag%3D%3D&utm_source=qr" class="px-6 py-3 rounded-full border border-white/30 hover:bg-white/10 transition">Instagram</a>
+                    </div>
+                    <p class="text-gray-500 text-sm mt-8">📍 Surabaya, Indonesia</p>
+                </div>
+            </section>
+        </main>
+    </div>
 
     <footer class="text-center py-8 text-gray-500 text-sm border-t border-white/10 mt-10">
         © 2026 Reky Saputra | Creativity is the Future. All rights reserved.
     </footer>
 
-    <!-- ========== JAVASCRIPT FULL ========== -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // ======================== FUNCTION EXPORT PDF (HTML2PDF) ========================
+            const pdfBtn = document.getElementById('download-pdf-btn');
+            if(pdfBtn) {
+                pdfBtn.addEventListener('click', function () {
+                    const element = document.getElementById('portfolio-content');
+                    
+                    // Konfigurasi Eksport PDF
+                    const opt = {
+                        margin:       [10, 10, 10, 10],
+                        filename:     'Portfolio_Reky_Saputra.pdf',
+                        image:        { type: 'jpeg', quality: 0.98 },
+                        html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#050505' },
+                        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                    };
+                    
+                    // Jalankan html2pdf
+                    html2pdf().set(opt).from(element).save();
+                });
+            }
+
             // ======================== 1. INTERACTIVE PARTICLE BACKGROUND ========================
             const canvas = document.getElementById('particleCanvas');
             const ctx = canvas.getContext('2d');
@@ -566,12 +576,10 @@
                 mousePosition.x = e.clientX;
                 mousePosition.y = e.clientY;
             });
-            
             window.addEventListener('mouseleave', () => {
                 mousePosition.x = -1000;
                 mousePosition.y = -1000;
             });
-            
             window.addEventListener('resize', resizeCanvas);
             resizeCanvas();
             animateParticles();
@@ -641,12 +649,11 @@
                 }
             }
             window.addEventListener("scroll", reveal);
-            reveal(); // Trigger saat halaman pertama kali diload
+            reveal();
 
             // ======================== 6. TYPEWRITER EFFECT ========================
-            const words = ["Multimedia Enthusiast.", "Graphic Design.", "Creative Thinker."];
-            let i = 0;
-            let timer;
+            const words = ["Multimedia Broadcasting Student", "Creative Content Creator", "Graphic Design."];
+            let i = 0, timer;
 
             function typingEffect() {
                 let word = words[i].split("");
@@ -656,7 +663,7 @@
                     } else {
                         setTimeout(deletingEffect, 2000);
                         return false;
-                    };
+                    }
                     timer = setTimeout(loopTyping, 100);
                 };
                 loopTyping();
@@ -673,11 +680,11 @@
                             i++;
                         } else {
                             i = 0;
-                        };
-                        typingEffect();
+                        }
+                        setTimeout(typingEffect, 500);
                         return false;
-                    };
-                    timer = setTimeout(loopDeleting, 50);
+                    }
+                    timer = setTimeout(loopDeleting, 60);
                 };
                 loopDeleting();
             }
